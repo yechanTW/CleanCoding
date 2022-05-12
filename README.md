@@ -2,7 +2,7 @@
 
 CleanCoding 스터디 입니다. 기존 PR들을 보면서 이전 개선점들 , 또 앞으로 개선해야 할 부분들을 공부합니다.
 
-### [Confluence CleanCoding](https://twinny.atlassian.net/wiki/spaces/TRSITEAM/pages/4510843317/Web)
+### [[Web] 클린코드와 리팩토링](https://twinny.atlassian.net/wiki/spaces/TRSITEAM/pages/4510843317/Web)
 ### [CleanCoding kor](https://github.com/qkraudghgh/clean-code-javascript-ko#%EB%B3%80%EC%88%98variables)
 
 ## 1. 변수
