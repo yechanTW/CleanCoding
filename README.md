@@ -153,3 +153,58 @@ isCheck --> isCheckedStation
 
 ## 3. 중복 코드
 
+```js
+// before
+let date = new Date(string);
+
+  if (type === 'start') {
+    date = new Date(date.setHours(0));
+    date = new Date(date.setMinutes(0));
+    date = new Date(date.setSeconds(0));
+  } else {
+    date = new Date(date.setHours(23));
+    date = new Date(date.setMinutes(59));
+    date = new Date(date.setSeconds(59));
+  }
+// after
+let date = new Date(string);
+
+  if (type === 'start') {
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+  } else {
+    date.setHours(23);
+    date.setMinutes(59);
+    date.setSeconds(59);
+  }
+```
+- date 객체가 계속 반복해서 생성되는 것을 줄였습니다.
+- 중복된 것을 줄이는 것이 가독성 부분에서 굉장히 중요한 것 같습니다. 그런 김에 저희 joined 머시기 쿼리도 줄었으면 ,,,
+- 계속 쓰는것은 귀찮을 뿐 아니라 반복해서 나오니까 헷갈리게 해서 집중력이 떨어지기도 하는 것 같습니다..
+
+## 4. 매개 변수
+
+```js
+// before
+ const numberFormat = (number) => {
+    return number < 10 ? '0' + number : number;
+  ...
+  return {
+    minutes: numberFormat(minutes),
+    seconds: numberFormat(seconds),
+}
+// after
+const getNumberFormatLessThenTen = (number) => {
+    return '0' + number;
+  };
+  ...
+  return {
+      minutes: minutes < 10 ? getNumberFormatLessThenTen(minutes) : minutes,
+    seconds: seconds < 10 ? getNumberFormatLessThenTen(seconds) : seconds,
+}
+```
+
+- 매개변수가 들어와서 다시 나누어지는 경우 , 함수를 만들어서 나눈 경우입니다. 
+- 이렇게 짜여진 자체가 한 가지 이상의 역할이며 , 나누는 것을 추천합니다.
+- 함수로 나뉜 경우가 훨씬 읽기 쉽고 , 이해하기 쉬운 것 같습니다.
